@@ -1,0 +1,18 @@
+name = "ninosaga-worker"
+main = "src/index.js"
+compatibility_date = "2024-06-22"
+
+[vars]
+FRONTEND_URL = "https://jesusguzmanautor.com"
+
+# Per-language download links (ZIP/PDF). One per language you sell.
+# Replace with your real secure links before going live.
+DOWNLOAD_URL_ES = "https://tu-enlace-seguro.com/saga-nino-bundle-es.zip"
+DOWNLOAD_URL_EN = "https://your-secure-link.com/saga-nino-bundle-en.zip"
+
+# Fallback used if a language-specific link above is missing.
+PDF_DOWNLOAD_URL = "https://tu-enlace-seguro.com/saga-nino-bundle-es.zip"
+
+# NOTA DE DESPLIEGUE:
+# Configura tu clave secreta de Stripe con:
+#   npx wrangler secret put STRIPE_SECRET_KEY

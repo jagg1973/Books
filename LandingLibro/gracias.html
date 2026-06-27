@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WX89SV4Z');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu compra! | Jesús Guzmán</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                            accent: '#d97706',
+                            accentHover: '#b45309'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- ========================================== -->
+    <!-- CÓDIGO DE GOOGLE ANALYTICS (GA4)           -->
+    <!-- ========================================== -->
+    <!-- (El código base de GA4 es inyectado por Cloudflare) -->
+
+    <!-- Este script disparará automáticamente tu evento "Compra_de_Libro" -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Lanzamos el evento exacto que marcaste con estrella en tu captura
+        gtag('event', 'Compra_de_Libro', {
+            value: 7.99,
+            currency: 'USD'
+        });
+    </script>
+
+</head>
+
+<body class="bg-brand-light text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-accent selection:text-white">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX89SV4Z" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <!-- Navigation Minimal -->
+    <nav class="w-full bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center items-center h-20 py-2">
+                <a href="index.html" class="group flex items-center gap-3 hover:opacity-100">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-dark text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300 shadow-md">
+                        <i class="fa-solid fa-feather-pointed text-xl"></i>
+                    </div>
+                    <span class="font-serif font-bold text-3xl text-brand-dark tracking-tight group-hover:text-brand-accent transition-colors duration-300">
+                        Jesús Guzmán
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-xl w-full bg-white rounded-3xl shadow-xl overflow-hidden text-center p-10 border border-slate-100">
+            
+            <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
+                <i class="fa-solid fa-check text-4xl text-green-500"></i>
+            </div>
+            
+            <h1 class="text-3xl font-serif font-bold text-brand-dark mb-4">¡Gracias por tu compra!</h1>
+            
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                Tu pago se ha procesado con éxito. Esperamos que el libro <em>"¿Quién escribe poesía hoy?"</em> sea una lectura edificante y te brinde el consuelo y propósito que buscas.
+            </p>
+
+            <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-200">
+                <h3 class="text-sm font-bold text-brand-dark uppercase tracking-wider mb-3">Tu Descarga</h3>
+                <p class="text-sm text-slate-500 mb-4">Haz clic en el botón de abajo para descargar tu copia digital (PDF/ePub).</p>
+                
+                <!-- BOTÓN DE DESCARGA: Se actualizará con JavaScript -->
+                <a id="download-btn" href="#" 
+                   class="inline-flex items-center justify-center w-full px-6 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-brand-dark hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/20">
+                    <i class="fa-solid fa-download mr-3"></i> Descargar Libro Ahora
+                </a>
+            </div>
+
+            <p class="text-sm text-slate-500">
+                ¿Tienes algún problema con la descarga? <a href="index.html#contacto" class="text-brand-accent hover:underline font-medium">Contáctanos aquí</a>.
+            </p>
+
+        </div>
+    </main>
+
+    <!-- Footer Minimal -->
+    <footer class="bg-slate-900 py-6">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">
+                &copy; 2026 jesusguzmanautor.com. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script para capturar el session_id de Stripe -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Obtener el session_id de la URL de la página
+            const urlParams = new URLSearchParams(window.location.search);
+            const sessionId = urlParams.get('session_id');
+            const downloadBtn = document.getElementById('download-btn');
+
+            if (sessionId) {
+                // Construir la URL de descarga correcta con el session_id
+                downloadBtn.href = `https://autor-libro-webhook.jaguzman123.workers.dev/api/download?session_id=${sessionId}`;
+            } else {
+                // Si alguien llega a esta página sin un session_id válido
+                downloadBtn.href = "#";
+                downloadBtn.onclick = function(e) {
+                    e.preventDefault();
+                    alert("No se ha detectado el ID de compra. Por favor, contáctanos si tuviste algún problema con tu pago.");
+                };
+            }
+        });
+    </script>
+</body>
+</html>

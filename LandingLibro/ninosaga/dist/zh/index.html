@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="meta.title">尼诺传奇 |异常 - 赫苏斯·古兹曼</title>
+<!-- SEO and Hreflang -->
+<link href="https://ninosaga.com/" hreflang="es" rel="alternate"/>
+<link href="https://ninosaga.com/en/" hreflang="en" rel="alternate"/>
+<link href="https://ninosaga.com/pt/" hreflang="pt" rel="alternate"/>
+<link href="https://ninosaga.com/zh/" hreflang="zh" rel="alternate"/>
+<link href="https://ninosaga.com/it/" hreflang="it" rel="alternate"/>
+<link href="https://ninosaga.com/de/" hreflang="de" rel="alternate"/>
+<link href="https://ninosaga.com/" hreflang="x-default" rel="alternate"/>
+<!-- Open Graph / Social Media -->
+<meta content="Saga Nino | La Anomalía - Jesús Guzmán" property="og:title"/>
+<meta content="Adéntrate en el oscuro universo de la Saga Nino. Un thriller psicológico y sobrenatural que te dejará sin aliento." property="og:description"/>
+<meta content="book" property="og:type"/>
+<meta content="https://ninosaga.com/" property="og:url"/>
+<meta content="https://ninosaga.com/assets/nino-anomaly-cover.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Saga Nino | La Anomalía - Jesús Guzmán" name="twitter:title"/>
+<meta content="Adéntrate en el oscuro universo de la Saga Nino. Un thriller psicológico y sobrenatural que te dejará sin aliento." name="twitter:description"/>
+<meta content="https://ninosaga.com/assets/nino-anomaly-cover.jpg" name="twitter:image"/>
+<!-- JSON-LD Schema Markup -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "Nino: La Anomalía",
+      "author": {
+        "@type": "Person",
+        "name": "Jesús Guzmán"
+      },
+      "url": "https://ninosaga.com",
+      "image": "https://ninosaga.com/assets/nino-anomaly-cover.jpg",
+      "description": "El punto de no retorno. Sigue los pasos de Nino hacia un misterio donde las leyes de la física y la cordura comienzan a desvanecerse.",
+      "inLanguage": ["es", "en", "pt", "zh", "it", "de"],
+      "offers": {
+        "@type": "Offer",
+        "price": "4.99",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": "https://ninosaga.com/#comprar"
+      }
+    }
+    </script>
+<meta content="Adéntrate en el oscuro universo de la Saga Nino. Un thriller psicológico y sobrenatural que te dejará sin aliento." name="description"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        dark: {
+                            base: '#050505',
+                            surface: '#0f0f11',
+                            elevated: '#1a1a1d',
+                        },
+                        crimson: {
+                            400: '#f87171',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                            glow: 'rgba(220, 38, 38, 0.5)',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #050505;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(15, 15, 17, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .orb-1 { width: 500px; height: 500px; background: #991b1b; top: -100px; left: -100px; }
+        .orb-2 { width: 600px; height: 600px; background: #450a0a; bottom: 10%; right: -200px; animation-delay: -5s; }
+        .orb-3 { width: 400px; height: 400px; background: #dc2626; top: 40%; left: 30%; opacity: 0.15; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+            100% { transform: translate(-30px, 60px) scale(0.9); }
+        }
+
+        .text-reveal { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+        .text-reveal > span {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade { to { transform: translateY(0); opacity: 1; } }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+        .book-container { perspective: 1200px; }
+        .book-cover {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .book-container:hover .book-cover {
+            transform: rotateY(-15deg) rotateX(5deg) scale(1.05);
+            box-shadow: 25px 25px 50px rgba(0,0,0,0.8), -10px -10px 30px rgba(220, 38, 38, 0.2);
+        }
+
+        .btn-glow { position: relative; transition: all 0.3s ease; overflow: hidden; }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        .btn-glow:hover::before { left: 100%; }
+        .btn-glow:hover { box-shadow: 0 0 30px rgba(220, 38, 38, 0.6); transform: translateY(-2px); }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(220, 38, 38, 0.5); border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(220, 38, 38, 0.8); }
+
+        /* Language selector */
+        #langSelect {
+            -webkit-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f87171' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 0.6rem center; background-size: 0.9em;
+            padding-right: 2rem;
+        }
+        #langSelect option { background: #1a1a1d; color: #f3f4f6; }
+    </style>
+</head>
+<body class="antialiased">
+<div class="noise-overlay"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<!-- Navigation -->
+<nav class="fixed w-full z-40 transition-all duration-300" id="navbar">
+<div class="max-w-7xl mx-auto px-6 py-4">
+<div class="glass-panel rounded-full px-6 py-3 flex justify-between items-center">
+<a class="font-serif font-bold text-xl md:text-2xl tracking-[0.2em] uppercase text-white hover:text-crimson-400 transition-colors drop-shadow-md" href="#">
+                    Saga Nino
+                </a>
+<div class="flex gap-3 md:gap-5 items-center">
+<select aria-label="Language / Idioma" class="bg-dark-elevated/80 border border-gray-700 text-gray-300 text-xs font-semibold uppercase tracking-[0.12em] rounded-full px-3 py-2 cursor-pointer hover:border-crimson-500 focus:outline-none focus:border-crimson-500 transition-colors" id="langSelect" onchange="window.location.href=this.value">
+<option value="/">ES · Español</option>
+<option value="/en/">EN · English</option>
+<option value="/pt/">PT · Português</option>
+<option selected="selected" value="/zh/">CN · 中文</option>
+<option value="/it/">IT · Italiano</option>
+<option value="/de/">DE · Deutsch</option>
+</select>
+<a class="px-5 md:px-6 py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white rounded-full font-semibold transition-all shadow-[0_0_15px_rgba(220,38,38,0.4)] text-xs md:text-sm tracking-wider uppercase btn-glow" data-i18n="nav.cta" href="#comprar">立即下载</a>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden z-10">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover opacity-20 mix-blend-luminosity scale-105 transform animate-[pulse_10s_ease-in-out_infinite_alternate]" src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&amp;w=2000&amp;auto=format&amp;fit=crop"/>
+<div class="absolute inset-0 bg-gradient-to-t from-dark-base via-dark-base/80 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-dark-base/60 via-transparent to-transparent"></div>
+</div>
+<div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center mt-10">
+<div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-crimson-800/50 bg-crimson-900/20 backdrop-blur-md">
+<span class="text-crimson-400 text-xs md:text-sm font-semibold tracking-[0.3em] uppercase" data-i18n="hero.eyebrow">违背现实的惊悚片</span>
+</div>
+<h1 class="text-6xl sm:text-7xl md:text-9xl font-serif font-bold text-white mb-6 tracking-tighter uppercase leading-none drop-shadow-2xl text-reveal">
+<span data-i18n="hero.title1" style="animation-delay: 0.2s">异常现象</span><br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-b from-crimson-400 to-crimson-800" data-i18n="hero.title2" style="animation-delay: 0.4s">已经开始</span>
+</h1>
+<p class="text-lg md:text-2xl text-gray-300 font-light mb-12 max-w-3xl mx-auto leading-relaxed text-reveal">
+<span data-i18n="hero.subtitle" style="animation-delay: 0.6s">潜入神秘的深渊。在这部消除噩梦与现实之间界限的文学传奇中揭开尼诺的黑暗秘密。</span>
+</p>
+<div class="flex flex-col sm:flex-row justify-center items-center gap-6 fade-in-up" style="animation-delay: 0.8s">
+<a class="w-full sm:w-auto px-10 py-5 bg-crimson-600 text-white rounded-full font-bold uppercase tracking-widest text-sm btn-glow flex items-center justify-center gap-3" data-i18n="hero.cta1" href="#comprar">解锁数字传奇</a>
+<a class="w-full sm:w-auto px-10 py-5 glass-panel text-white rounded-full font-medium uppercase tracking-widest text-sm hover:bg-white/10 transition-colors flex items-center justify-center gap-3" data-i18n="hero.cta2" href="#libros">探索书籍</a>
+</div>
+</div>
+<!-- Scroll Indicator (direct child of the hero section so it sits at the bottom of the screen) -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50 hidden md:block z-20">
+<p class="text-xs uppercase tracking-[0.2em] mb-2 text-gray-400" data-i18n="hero.scroll">发现更多</p>
+<i class="fa-solid fa-chevron-down text-crimson-500"></i>
+</div>
+</section>
+<!-- Books Showcase Section -->
+<section class="py-32 relative z-10" id="libros">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-20 fade-in-up">
+<h2 class="text-4xl md:text-6xl font-serif font-bold text-white uppercase tracking-widest drop-shadow-lg" data-i18n="books.title">各卷</h2>
+<div class="w-1 h-16 bg-gradient-to-b from-crimson-500 to-transparent mx-auto mt-6"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<!-- Book 1 -->
+<div class="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden group fade-in-up">
+<div class="absolute top-0 right-0 w-64 h-64 bg-crimson-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="flex flex-col md:flex-row gap-10 items-center">
+<div class="book-container w-64 flex-shrink-0">
+<img alt="Nino: The Anomaly" class="book-cover w-full h-[380px] object-cover rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5" src="assets/nino-anomaly-cover.jpg"/>
+</div>
+<div class="flex-1">
+<span class="text-crimson-500 font-bold tracking-[0.2em] text-xs uppercase mb-2 block" data-i18n="b1.badge">书 1</span>
+<h3 class="text-3xl font-serif font-bold text-white mb-4 leading-tight" data-i18n="b1.title">尼诺：<br/>异常</h3>
+<p class="text-gray-400 mb-8 font-light leading-relaxed" data-i18n="b1.desc">到了没有回头路的地步。跟随尼诺进入一个神秘的世界，物理定律和理智开始消失。一切都不是看上去的那样。</p>
+<div class="space-y-4">
+<h4 class="text-xs text-gray-500 uppercase tracking-widest border-b border-white/10 pb-2" data-i18n="book.physical">获取实体版</h4>
+<a class="group/btn flex items-center justify-between px-5 py-4 bg-dark-elevated hover:bg-dark-surface rounded-xl border border-white/5 transition-all w-full" href="https://www.amazon.com/dp/B0FR3H1M6Z" rel="noopener" target="_blank">
+<div class="flex items-center gap-3">
+<i class="fa-brands fa-amazon text-2xl text-[#FF9900]"></i>
+<div class="text-left">
+<div class="text-white font-medium text-sm">Amazon</div>
+<div class="text-gray-500 text-xs" data-i18n="book.format">Kindle / 精装本 / 平装本</div>
+</div>
+</div>
+<i class="fa-solid fa-arrow-right text-crimson-500 transform group-hover/btn:translate-x-1 transition-transform"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Book 2 -->
+<div class="glass-panel p-8 md:p-12 rounded-3xl relative overflow-hidden group fade-in-up" style="transition-delay: 200ms;">
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-crimson-800/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+<div class="flex flex-col md:flex-row gap-10 items-center">
+<div class="book-container w-64 flex-shrink-0">
+<img alt="Nino: Hell" class="book-cover w-full h-[380px] object-cover rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5" src="assets/nino-hell-cover.jpg"/>
+</div>
+<div class="flex-1">
+<span class="text-crimson-500 font-bold tracking-[0.2em] text-xs uppercase mb-2 block" data-i18n="b2.badge">第 2 册</span>
+<h3 class="text-3xl font-serif font-bold text-white mb-4 leading-tight" data-i18n="b2.title">尼诺：<br/>地狱</h3>
+<p class="text-gray-400 mb-8 font-light leading-relaxed" data-i18n="b2.desc">绝对的血统。令人眼花缭乱的续集将读者拖入个人和超自然的地狱深处。做好应对冲击的准备。</p>
+<div class="space-y-4">
+<h4 class="text-xs text-gray-500 uppercase tracking-widest border-b border-white/10 pb-2" data-i18n="book.physical">获取实体版</h4>
+<a class="group/btn flex items-center justify-between px-5 py-4 bg-dark-elevated hover:bg-dark-surface rounded-xl border border-white/5 transition-all w-full" href="https://www.amazon.com/dp/B0FVSL99QM" rel="noopener" target="_blank">
+<div class="flex items-center gap-3">
+<i class="fa-brands fa-amazon text-2xl text-[#FF9900]"></i>
+<div class="text-left">
+<div class="text-white font-medium text-sm">Amazon</div>
+<div class="text-gray-500 text-xs" data-i18n="book.format">Kindle / 精装本 / 平装本</div>
+</div>
+</div>
+<i class="fa-solid fa-arrow-right text-crimson-500 transform group-hover/btn:translate-x-1 transition-transform"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Coming Soon -->
+<div class="mt-20 glass-panel p-1 border-crimson-900/30 rounded-2xl max-w-3xl mx-auto fade-in-up">
+<div class="bg-dark-surface/50 rounded-xl p-8 md:p-12 text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-crimson-600 to-transparent"></div>
+<i class="fa-solid fa-hourglass-half text-3xl text-crimson-500 mb-4 animate-pulse"></i>
+<h3 class="text-2xl font-serif font-bold text-white mb-2 uppercase tracking-widest" data-i18n="cs.title">第三册：觉醒</h3>
+<p class="text-gray-400" data-i18n="cs.desc">目前在锻造厂中。史诗般的结局比你想象的更接近。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Buy Digital Bundle Section -->
+<section class="py-32 relative z-10" id="comprar">
+<div class="absolute inset-0 bg-dark-surface border-t border-b border-white/5 skew-y-[-2deg] origin-top-left -z-10"></div>
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-in-up">
+<h2 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 uppercase tracking-wider" data-i18n="buy.title">即时体验</h2>
+<p class="text-xl text-gray-400 max-w-2xl mx-auto font-light" data-i18n="buy.subtitle">不用等待发货。获取官方数字捆绑包并在几秒钟内开始阅读。</p>
+</div>
+<div class="glass-panel border-crimson-600/30 rounded-3xl p-1 relative overflow-hidden fade-in-up delay-100 shadow-[0_0_50px_rgba(220,38,38,0.1)]">
+<div class="absolute inset-0 bg-gradient-to-br from-crimson-900/20 to-transparent pointer-events-none"></div>
+<div class="bg-dark-elevated/80 backdrop-blur-xl rounded-[23px] p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
+<div class="flex-1 text-center lg:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-crimson-500/10 border border-crimson-500/20 text-crimson-400 text-xs font-bold mb-6 tracking-widest uppercase">
+<i class="fa-solid fa-bolt"></i> <span data-i18n="buy.badge">完全访问权限</span>
+</div>
+<h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4" data-i18n="buy.name">尼诺传奇捆绑包</h3>
+<p class="text-gray-400 mb-8 font-light text-lg" data-i18n="buy.desc">直接下载 PDF 格式，针对您的所有设备进行了优化。</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-300">
+<div class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-crimson-500"></i> <span data-i18n="buy.f1">第一本书：异常（完整）</span></div>
+<div class="flex items-center gap-3"><i class="fa-solid fa-check-circle text-crimson-500"></i> <span data-i18n="buy.f2">第二卷：地狱（已完结）</span></div>
+<div class="flex items-center gap-3"><i class="fa-solid fa-globe text-crimson-500"></i> <span data-i18n="buy.flang">语言： 英语</span></div>
+<div class="flex items-center gap-3"><i class="fa-solid fa-shield-halved text-crimson-500"></i> <span data-i18n="buy.f4">安全、无 DRM 的文件</span></div>
+</div>
+</div>
+<div class="flex flex-col items-center bg-dark-base/50 p-8 rounded-2xl border border-white/5 min-w-[300px]">
+<div class="text-gray-500 uppercase tracking-widest text-xs font-bold mb-2" data-i18n="price.label">一次性付款 · 无需订阅</div>
+<div class="text-6xl font-bold text-white mb-2 drop-shadow-lg" data-i18n="price.value">4.99 欧元</div>
+<div class="text-gray-500 text-xs mb-6" data-i18n="price.sub">两本完整小说 · 即时下载</div>
+<button class="w-full px-8 py-5 bg-crimson-600 text-white rounded-xl font-bold transition-all btn-glow uppercase tracking-wider flex items-center justify-center gap-3 text-sm" onclick="comprarSaga(event)">
+<i class="fa-regular fa-credit-card text-lg"></i> <span data-i18n="buy.cta">立即购买</span>
+</button>
+<div class="mt-4 flex items-center gap-2 text-xs text-gray-500">
+<i class="fa-solid fa-lock text-gray-600"></i> <span data-i18n="buy.secure">通过 Stripe 进行加密支付</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-28 relative z-10" id="faq">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-14 fade-in-up">
+<h2 class="text-4xl md:text-5xl font-serif font-bold text-white uppercase tracking-widest drop-shadow-lg" data-i18n="faq.title">常见问题解答</h2>
+<div class="w-1 h-12 bg-gradient-to-b from-crimson-500 to-transparent mx-auto mt-6"></div>
+</div>
+<div class="space-y-4 fade-in-up">
+<details class="glass-panel rounded-2xl px-6 py-5 group">
+<summary class="flex justify-between items-center cursor-pointer list-none text-white font-semibold text-lg">
+<span data-i18n="faq.q1">数字捆绑包中包含什么？</span>
+<i class="fa-solid fa-plus text-crimson-500 group-open:rotate-45 transition-transform"></i>
+</summary>
+<p class="text-gray-400 font-light mt-4 leading-relaxed" data-i18n="faq.a1">两本完整的传奇故事书籍 - <strong class="text-gray-200">Nino: The Anomaly</strong>（第 1 册）和<strong class="text-gray-200">Nino: Hell</strong>（第 2 册） - 均为 PDF 格式，采用您选择的语言。一次付款，无需订阅。</p>
+</details>
+<details class="glass-panel rounded-2xl px-6 py-5 group">
+<summary class="flex justify-between items-center cursor-pointer list-none text-white font-semibold text-lg">
+<span data-i18n="faq.q2">我可以在哪些设备上阅读它们？</span>
+<i class="fa-solid fa-plus text-crimson-500 group-open:rotate-45 transition-transform"></i>
+</summary>
+<p class="text-gray-400 font-light mt-4 leading-relaxed" data-i18n="faq.a2">他们中的任何一个。 PDF 针对手机、平板电脑、计算机和大多数电子阅读器进行了优化。这些文件不受 DRM 保护，因此您可以离线保存和阅读它们。</p>
+</details>
+<details class="glass-panel rounded-2xl px-6 py-5 group">
+<summary class="flex justify-between items-center cursor-pointer list-none text-white font-semibold text-lg">
+<span data-i18n="faq.q3">我如何以及何时收到书籍？</span>
+<i class="fa-solid fa-plus text-crimson-500 group-open:rotate-45 transition-transform"></i>
+</summary>
+<p class="text-gray-400 font-light mt-4 leading-relaxed" data-i18n="faq.a3">即刻。确认付款后，您可以通过下载页面直接访问您的文件。无需等待，无需运送。</p>
+</details>
+<details class="glass-panel rounded-2xl px-6 py-5 group">
+<summary class="flex justify-between items-center cursor-pointer list-none text-white font-semibold text-lg">
+<span data-i18n="faq.q4">付款安全吗？</span>
+<i class="fa-solid fa-plus text-crimson-500 group-open:rotate-45 transition-transform"></i>
+</summary>
+<p class="text-gray-400 font-light mt-4 leading-relaxed" data-i18n="faq.a4">是的。所有付款均通过 <strong class="text-gray-200">Stripe</strong> 进行加密处理。我们绝不会查看或存储您的银行卡详细信息。</p>
+</details>
+<details class="glass-panel rounded-2xl px-6 py-5 group">
+<summary class="flex justify-between items-center cursor-pointer list-none text-white font-semibold text-lg">
+<span data-i18n="faq.q5">更喜欢实体版？</span>
+<i class="fa-solid fa-plus text-crimson-500 group-open:rotate-45 transition-transform"></i>
+</summary>
+<p class="text-gray-400 font-light mt-4 leading-relaxed" data-i18n="faq.a5">亚马逊上有精装本、平装本和 Kindle 版本。在<a class="text-crimson-400 hide:text-crimson-300 underline" href="#libros">卷</a>部分中找到链接。</p>
+</details>
+</div>
+</div>
+</section>
+<!-- Direct Contact Section -->
+<section class="py-24 relative z-10 bg-dark-base border-t border-white/5" id="contacto">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-crimson-900/10 via-dark-base to-dark-base"></div>
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 fade-in-up">
+<h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-6 uppercase tracking-wider" data-i18n="contact.title">有问题吗？</h2>
+<p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto font-light" data-i18n="contact.desc">我更喜欢直接联系——没有中间商，没有冰冷的自动化。写信给我，我会亲自回复。</p>
+<div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+<a class="group flex items-center justify-center w-full sm:w-64 px-6 py-4 glass-panel hover:bg-[#25D366]/20 border-white/10 hover:border-[#25D366]/50 text-white rounded-xl font-medium transition-all duration-300" href="https://wa.me/35799762835" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-whatsapp text-2xl mr-3 text-[#25D366] group-hover:scale-110 transition-transform"></i> <span data-i18n="contact.wa">WhatsApp 直接</span>
+</a>
+<a class="group flex items-center justify-center w-full sm:w-64 px-6 py-4 glass-panel hover:bg-[#0088cc]/20 border-white/10 hover:border-[#0088cc]/50 text-white rounded-xl font-medium transition-all duration-300" href="https://t.me/jagg1973" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-telegram text-2xl mr-3 text-[#0088cc] group-hover:scale-110 transition-transform"></i> <span data-i18n="contact.tg">电报直达</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#020202] py-12 border-t border-white/5 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<span class="font-serif font-bold text-xl text-white tracking-[0.2em] uppercase drop-shadow-md">Saga Nino</span>
+<p class="text-gray-500 text-sm mt-2 font-light" data-i18n="footer.tagline">赫苏斯·古兹曼的创作</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm">
+<button class="text-gray-500 hover:text-crimson-400 transition-colors uppercase tracking-wider text-xs font-semibold" data-i18n="footer.privacy" onclick="document.getElementById('modal-privacidad').classList.remove('hidden')">隐私声明</button>
+<button class="text-gray-500 hover:text-crimson-400 transition-colors uppercase tracking-wider text-xs font-semibold" data-i18n="footer.terms" onclick="document.getElementById('modal-terminos').classList.remove('hidden')">条款及条件</button>
+<a class="text-gray-500 hover:text-crimson-400 transition-colors uppercase tracking-wider text-xs font-semibold" data-i18n="footer.contact" href="#contacto">接触</a>
+</div>
+<div class="text-gray-600 text-xs font-light text-center md:text-right uppercase tracking-widest" data-i18n="footer.copyright">＆复制; 2026 版权所有。<br/>谜团才刚刚开始。</div>
+</div>
+</footer>
+<!-- Modal: Privacidad -->
+<div aria-modal="true" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-md overflow-y-auto" id="modal-privacidad" role="dialog">
+<div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+<div class="relative glass-panel rounded-2xl text-left overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.15)] border border-white/10 transform transition-all sm:my-8 sm:max-w-2xl w-full">
+<div class="p-6 sm:p-8">
+<div class="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+<h3 class="text-2xl font-serif font-bold text-white uppercase tracking-wider" data-i18n="priv.title">隐私声明</h3>
+<button class="text-gray-500 hover:text-crimson-500 transition-colors" onclick="document.getElementById('modal-privacidad').classList.add('hidden')">
+<i class="fa-solid fa-xmark text-2xl"></i>
+</button>
+</div>
+<div class="text-gray-300 space-y-5 text-sm h-96 overflow-y-auto pr-4 custom-scrollbar font-light" data-i18n="priv.body"><p><strong class="text-white">最后更新时间：</strong>2026 年 6 月</p><p>在 <em>Nino Saga</em>，我们深深尊重您的隐私，并致力于保护您的个人数据。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercasetracking-wider">1.我们收集的信息</h4><p>当您购买数字版本时，我们仅收集处理您的订单和交付产品所需的信息：您的姓名和电子邮件地址。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercase Tracking-wider">2.安全付款</h4><p>我们绝不会存储或访问您的银行卡详细信息。所有付款均通过 <strong>Stripe</strong> 进行安全处理和加密。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercasetracking-wider">3.信息的使用</h4><p>您的电子邮件仅用于发送您的下载链接和付款收据。我们不会向第三方出售或分享您的个人信息，除非是处理您的付款 (Stripe) 所必需的。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercasetracking-wider">4.联系</h4><p>如果您对如何处理您的数据有任何疑问，请通过 WhatsApp 或 Telegram 与我们联系。</p></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal: Términos -->
+<div aria-modal="true" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-md overflow-y-auto" id="modal-terminos" role="dialog">
+<div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+<div class="relative glass-panel rounded-2xl text-left overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.15)] border border-white/10 transform transition-all sm:my-8 sm:max-w-2xl w-full">
+<div class="p-6 sm:p-8">
+<div class="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+<h3 class="text-2xl font-serif font-bold text-white uppercase tracking-wider" data-i18n="terms.title">条款及条件</h3>
+<button class="text-gray-500 hover:text-crimson-500 transition-colors" onclick="document.getElementById('modal-terminos').classList.add('hidden')">
+<i class="fa-solid fa-xmark text-2xl"></i>
+</button>
+</div>
+<div class="text-gray-300 space-y-5 text-sm h-96 overflow-y-auto pr-4 custom-scrollbar font-light" data-i18n="terms.body"><p>访问并进行购买即表示您接受以下条款和条件。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercasetracking-wider">1.知识产权</h4><p>《Nino Saga》书籍是 Jesús Guzmán 的注册作品。版权所有。未经作者书面许可，严禁复制、分发或转售。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercase Tracking-wider">2.数字产品和退款</h4><p>由于数字产品的性质，所有销售均为<strong>最终</strong>。如果您遇到技术问题，请通过 WhatsApp 或 Telegram 联系我们以获得即时帮助。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercasetracking-wider">3.使用许可</h4><p>您的购买授予个人、不可转让、非独占的许可。您不得与第三方共享原始文件或将其上传到公共平台。</p><h4 class="font-bold text-crimson-500 text-base mt-6 uppercase Tracking-wider">4.实体书 (Amazon KDP)</h4><p>实体版由 Amazon 处理和运输。任何运输或退货索赔均通过亚马逊处理。</p></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scripts -->
+<script>
+        const CURRENT_LANG = 'zh';
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const elements = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+            elements.forEach(el => observer.observe(el));
+
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-dark-base/80', 'backdrop-blur-md', 'shadow-lg');
+                } else {
+                    navbar.classList.remove('bg-dark-base/80', 'backdrop-blur-md', 'shadow-lg');
+                }
+            });
+        });
+
+        // Checkout — sends the selected language so the Worker delivers the right bundle.
+        async function comprarSaga(event) {
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            const connecting = CURRENT_LANG === 'en' ? 'Connecting...' : 'Conectando...';
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> ' + connecting;
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.8';
+
+            try {
+                // UPDATE THIS URL WITH YOUR ACTUAL DEPLOYED WORKER URL
+                const workerUrl = 'https://ninosaga-worker.jaguzman123.workers.dev/api/create-checkout-session';
+
+                const response = await fetch(workerUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ productId: 'bundle_nino', lang: CURRENT_LANG })
+                });
+
+                if (!response.ok) throw new Error('Server connection error');
+
+                const data = await response.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    throw new Error('Session not created');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const msg = CURRENT_LANG === 'en'
+                    ? 'There was an error processing your request. Please make sure the Worker is deployed correctly.'
+                    : 'Hubo un error al procesar la solicitud. Por favor, asegúrate de que el Worker está desplegado correctamente.';
+                alert(msg);
+                btn.innerHTML = originalText;
+                btn.style.pointerEvents = 'auto';
+                btn.style.opacity = '1';
+            }
+        }
+    </script>
+</body>
+</html>
