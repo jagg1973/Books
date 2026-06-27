@@ -547,11 +547,50 @@
         </div>
     </div>
 
+    <!-- Language Suggestion Toast -->
+    <div id="lang-toast" class="fixed bottom-4 right-4 z-[200] hidden glass-panel border border-crimson-500/50 rounded-xl p-5 shadow-2xl flex-col gap-3 fade-in-up max-w-sm">
+        <div class="flex justify-between items-start gap-4">
+            <p id="lang-toast-msg" class="text-sm text-white font-medium leading-relaxed"></p>
+            <button onclick="dismissLangToast()" class="text-gray-400 hover:text-white mt-0.5"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <a id="lang-toast-btn" href="#" class="mt-2 px-4 py-2.5 bg-crimson-600 hover:bg-crimson-500 text-white rounded-lg text-xs font-bold uppercase tracking-wider text-center transition-colors shadow-lg"></a>
+    </div>
+
     <!-- Scripts -->
     <script>
         const CURRENT_LANG = '{{LANG}}';
 
+        function dismissLangToast() {
+            document.getElementById('lang-toast').style.display = 'none';
+            try { localStorage.setItem('lang_dismissed', '1'); } catch(e){}
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
+
+            // Browser Language Suggestion Logic
+            try {
+                if (!localStorage.getItem('lang_dismissed')) {
+                    const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
+                    const supported = ['es', 'en', 'pt', 'zh', 'it', 'de'];
+                    if (supported.includes(browserLang) && browserLang !== CURRENT_LANG) {
+                        const dict = {
+                            es: { m: "Parece que hablas español. ¿Quieres ver la página en tu idioma?", b: "Cambiar a Español" },
+                            en: { m: "It looks like you speak English. View in your language?", b: "Switch to English" },
+                            pt: { m: "Parece que você fala português. Mudar de idioma?", b: "Mudar para Português" },
+                            zh: { m: "看来您说中文。要切换到您的语言吗？", b: "切换到中文" },
+                            it: { m: "Sembra che tu parli italiano. Vuoi cambiare lingua?", b: "Passa all'italiano" },
+                            de: { m: "Es sieht so aus, als ob Sie Deutsch sprechen. Sprache ändern?", b: "Auf Deutsch wechseln" }
+                        };
+                        document.getElementById('lang-toast-msg').innerText = dict[browserLang].m;
+                        const btn = document.getElementById('lang-toast-btn');
+                        btn.innerText = dict[browserLang].b;
+                        btn.href = browserLang === 'es' ? '/' : '/' + browserLang + '/';
+                        const toast = document.getElementById('lang-toast');
+                        toast.classList.remove('hidden');
+                        toast.classList.add('flex');
+                    }
+                }
+            } catch(e){}
 
             const elements = document.querySelectorAll('.fade-in-up');
             const observer = new IntersectionObserver((entries) => {
