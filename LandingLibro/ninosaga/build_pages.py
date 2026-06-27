@@ -64,6 +64,19 @@ def build():
             else:
                 link['href'] = f"{base_url}/{hl}/"
                 
+        # 8. Fix image paths & support localized covers
+        for img in soup.find_all('img'):
+            src = img.get('src', '')
+            if src.startswith('assets/'):
+                basename = os.path.basename(src)
+                name, ext = os.path.splitext(basename)
+                localized_name = f"{name}-{lang}{ext}"
+                # If a localized cover exists (e.g. nino-anomaly-cover-en.jpg), use it.
+                if lang != 'es' and os.path.exists(f"assets/{localized_name}"):
+                    img['src'] = f"/assets/{localized_name}"
+                else:
+                    img['src'] = f"/{src}"
+                
         # Write to dist
         out_dir = 'dist' if lang == 'es' else f'dist/{lang}'
         os.makedirs(out_dir, exist_ok=True)
