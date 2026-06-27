@@ -147,14 +147,46 @@
         }
         .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
-        .book-container { perspective: 1200px; }
+        .book-container { perspective: 1200px; position: relative; }
         .book-cover {
             transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 2;
+        }
+        .book-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(220, 38, 38, 0.4) 50%, transparent 100%);
+            background-size: 100% 200%;
+            border-radius: 0.375rem;
+            z-index: 3;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            mix-blend-mode: overlay;
+        }
+        .book-container:hover::after {
+            opacity: 1;
+            animation: scanline 2s linear infinite;
+        }
+        @keyframes scanline {
+            0% { background-position: 0 -100%; }
+            100% { background-position: 0 200%; }
         }
         .book-container:hover .book-cover {
-            transform: rotateY(-15deg) rotateX(5deg) scale(1.05);
-            box-shadow: 25px 25px 50px rgba(0,0,0,0.8), -10px -10px 30px rgba(220, 38, 38, 0.2);
+            transform: rotateY(-12deg) rotateX(8deg) scale(1.08);
+            box-shadow: 
+                25px 25px 50px rgba(0,0,0,0.9), 
+                -15px -15px 40px rgba(220, 38, 38, 0.4),
+                0 0 30px rgba(220, 38, 38, 0.6);
+            filter: contrast(1.15) saturate(1.2);
+            animation: supernatural-float 3s ease-in-out infinite alternate;
+        }
+        @keyframes supernatural-float {
+            0% { transform: rotateY(-12deg) rotateX(8deg) scale(1.08) translateY(0); }
+            100% { transform: rotateY(-16deg) rotateX(4deg) scale(1.08) translateY(-10px); }
         }
 
         .btn-glow { position: relative; transition: all 0.3s ease; overflow: hidden; }
@@ -279,7 +311,7 @@
                     <div class="absolute top-0 right-0 w-64 h-64 bg-crimson-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                     <div class="flex flex-col md:flex-row gap-10 items-center">
                         <div class="book-container w-64 flex-shrink-0">
-                            <img src="assets/nino-anomaly-cover.jpg" alt="Nino: The Anomaly" class="book-cover w-full h-[380px] object-cover rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5">
+                            <img src="/assets/nino-anomaly-cover.jpg" onclick="openImageModal(this.src)" alt="Nino: The Anomaly" class="book-cover cursor-pointer w-full h-[380px] object-cover rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5">
                         </div>
                         <div class="flex-1">
                             <span data-i18n="b1.badge" class="text-crimson-500 font-bold tracking-[0.2em] text-xs uppercase mb-2 block">Libro 1</span>
@@ -309,7 +341,7 @@
                     <div class="absolute bottom-0 left-0 w-64 h-64 bg-crimson-800/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
                     <div class="flex flex-col md:flex-row gap-10 items-center">
                         <div class="book-container w-64 flex-shrink-0">
-                            <img src="assets/nino-hell-cover.jpg" alt="Nino: Hell" class="book-cover w-full h-[380px] object-cover rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5">
+                            <img src="/assets/nino-hell-cover.jpg" onclick="openImageModal(this.src)" alt="Nino: Hell" class="book-cover cursor-pointer w-full h-[380px] object-cover rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5">
                         </div>
                         <div class="flex-1">
                             <span data-i18n="b2.badge" class="text-crimson-500 font-bold tracking-[0.2em] text-xs uppercase mb-2 block">Libro 2</span>
@@ -547,6 +579,14 @@
         </div>
     </div>
 
+    <!-- Modal: Image Viewer -->
+    <div id="modal-image" class="fixed inset-0 z-[300] hidden bg-black/95 backdrop-blur-xl overflow-hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeImageModal()">
+        <button class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors z-50">
+            <i class="fa-solid fa-xmark text-3xl"></i>
+        </button>
+        <img id="modal-image-img" src="" class="max-h-[90vh] max-w-full object-contain rounded-lg shadow-[0_0_100px_rgba(220,38,38,0.3)] transition-transform duration-500 scale-95" onclick="event.stopPropagation()">
+    </div>
+
     <!-- Language Suggestion Toast -->
     <div id="lang-toast" class="fixed bottom-4 right-4 z-[200] hidden glass-panel border border-crimson-500/50 rounded-xl p-5 shadow-2xl flex-col gap-3 fade-in-up max-w-sm">
         <div class="flex justify-between items-start gap-4">
@@ -563,6 +603,31 @@
         function dismissLangToast() {
             document.getElementById('lang-toast').style.display = 'none';
             try { localStorage.setItem('lang_dismissed', '1'); } catch(e){}
+        }
+
+        function openImageModal(src) {
+            const modal = document.getElementById('modal-image');
+            const img = document.getElementById('modal-image-img');
+            img.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('modal-image');
+            const img = document.getElementById('modal-image-img');
+            modal.classList.add('opacity-0');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
         }
 
         document.addEventListener("DOMContentLoaded", function () {
